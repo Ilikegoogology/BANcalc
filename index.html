@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birds Array Calculator</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .container { width: 300px; margin: 0 auto; }
+        input, button { margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Birds Array Calculator</h1>
+        <input type="text" id="expression" placeholder="Enter expression, e.g., {2,3}">
+        <button onclick="calculate()">Calculate</button>
+        <p>Result: <span id="result"></span></p>
+    </div>
+    <script>
+        function calculate() {
+            const expr = document.getElementById('expression').value.trim();
+            const result = evaluate(expr);
+            document.getElementById('result').innerText = result;
+        }
+
+        function evaluate(expression) {
+            // Basic parsing and calculation logic
+            // Assumes well-formed input
+            expression = expression.replace(/{|}/g, '');
+            const parts = expression.split(',');
+            if (parts.length === 1) {
+                return parts[0];
+            } else if (parts.length === 2) {
+                const base = parseInt(parts[0]);
+                const exponent = parseInt(parts[1]);
+                return Math.pow(base, exponent);
+            }
+            return 'Invalid input';
+        }
+    </script>
+</body>
+</html>
